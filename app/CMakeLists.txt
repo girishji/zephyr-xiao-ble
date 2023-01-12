@@ -1,4 +1,4 @@
-# Copyright 2022 FMK (Girish Palya)
+# Copyright 2023 Girish Palya
 # SPDX-License-Identifier: MIT
 
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
