@@ -1,0 +1,11 @@
+# Copyright 2022 FMK (Girish Palya)
+# SPDX-License-Identifier: MIT
+
+description: GPIO pins for testing
+
+compatible: "gpio-test"
+
+properties:
+  gpios:
+    type: phandle-array
+    required: true
