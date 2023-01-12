@@ -1,8 +1,9 @@
-/.venv
-/.west
-/bootloader
-/modules
-/tools
-/zephyr
-/build
+.venv
+.west
+.cache
+bootloader
+modules
+tools
+zephyr
+build
 *.DS_Store
