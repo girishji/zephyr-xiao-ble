@@ -7,3 +7,4 @@ tools
 zephyr
 build
 *.DS_Store
+REMEMBER_TO_ACTIVATE_VIRTUAL_ENV

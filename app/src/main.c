@@ -19,41 +19,44 @@ LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 #define GPIO_NODE DT_NODELABEL(xiao_test)
 
 #if !DT_NODE_EXISTS(GPIO_NODE)
-#error "Overlay for gpio test is not properly defined."
+#error "Overlay for gpio test is not defined."
 #endif
 
-void main(void) {
+#define XIAO_GPIO_PIN(i, _) \
+    const struct gpio_dt_spec D##i = GPIO_DT_SPEC_GET_BY_IDX(GPIO_NODE, gpios, i)
+#define IS_GPIO_READY(i, _) !gpio_is_ready_dt(&D##i)
+#define GPIO_PIN_CONFIGURE(i, _) \
+    (gpio_pin_configure_dt(&D##i, GPIO_OUTPUT_INACTIVE) < 0)
+
+void main(void)
+{
 
     printk("Xiao BLE Test Application %s\n", APP_VERSION_STR);
 
-    const struct gpio_dt_spec D0 =
-        GPIO_DT_SPEC_GET_BY_IDX(GPIO_NODE, gpios, 0);
-    const struct gpio_dt_spec D1 =
-        GPIO_DT_SPEC_GET_BY_IDX(GPIO_NODE, gpios, 1);
+    LISTIFY(11, XIAO_GPIO_PIN, (;));
 
-    if (!gpio_is_ready_dt(&D0) || !gpio_is_ready_dt(&D1)) {
+    if (LISTIFY(11, IS_GPIO_READY, (||))) {
         LOG_ERR("GPIOs not ready");
         return;
     }
 
     /* Configure pins. */
-    if ((gpio_pin_configure_dt(&D0, GPIO_OUTPUT_ACTIVE) < 0) ||
-        (gpio_pin_configure_dt(&D1, GPIO_OUTPUT_ACTIVE) < 0)) {
+    if (LISTIFY(11, GPIO_PIN_CONFIGURE, (||))) {
         LOG_ERR("GPIOs configuration failed");
         return;
     }
 
+    /* Set D0 and D1 pins high */
+    if (gpio_pin_set_dt(&D0, 1) < 0) {
+        LOG_ERR("GPIO set high failed");
+        return;
+    }
+    if (gpio_pin_set_dt(&D1, 1) < 0) {
+        LOG_ERR("GPIO set high failed");
+        return;
+    }
+
     while (1) {
-        /*
-        if (gpio_pin_set_dt(&D0, 1) < 0) {
-            LOG_ERR("GPIO set high failed");
-            return;
-        }
-        if (gpio_pin_set_dt(&D1, 1) < 0) {
-            LOG_ERR("GPIO set high failed");
-            return;
-        } 
-        */
         k_sleep(K_MSEC(5000));
     }
 }
