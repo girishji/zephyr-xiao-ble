@@ -4,6 +4,8 @@ Zephyr uses device trees. It is not straightforward to transition from sample
 LED blinky app that Zephyr provides to manipulating GPIO pins. This repository
 contains the plumbing needed for GPIO and ADC, in addition to sample usage.
 
+See the overlay file `app/boards` for pin configuration.
+
 ### Installation
 
 Clone this repository. Follow the [Getting
@@ -19,7 +21,7 @@ procedure below.
 
 ```
 # Create Zephyr workspace
-cd zephyr-gpio-xiao-ble
+cd zephyr-xiao-ble
 west init -l app/
 
 # Fetch modules
@@ -35,7 +37,7 @@ pip3 install -r zephyr/scripts/requirements-base.txt
 ### Build
 
 ```
-cd zephyr-gpio-xiao-ble
+cd zephyr-xiao-ble
 mkdir -p build
 west build -b xiao_ble app
 ```
