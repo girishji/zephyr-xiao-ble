@@ -1,8 +1,8 @@
-## Zephyr GPIO Usage Sample for Seeed Xiao BLE
+## Zephyr GPIO and ADC Usage Sample for Seeed Xiao BLE
 
 Zephyr uses device trees. It is not straightforward to transition from sample
 LED blinky app that Zephyr provides to manipulating GPIO pins. This repository
-contains the plumbing needed to get GPIO pins to work under Zephyr.
+contains the plumbing needed for GPIO and ADC, in addition to sample usage.
 
 ### Installation
 
