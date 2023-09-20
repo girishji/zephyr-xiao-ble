@@ -1,10 +1,11 @@
+*.DS_Store
 .venv
 .west
 .cache
 bootloader
+build
 modules
 tools
+venv
 zephyr
-build
-*.DS_Store
 REMEMBER_TO_ACTIVATE_VIRTUAL_ENV
