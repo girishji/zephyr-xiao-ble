@@ -38,7 +38,6 @@ pip3 install -r zephyr/scripts/requirements-base.txt
 
 ```
 cd zephyr-xiao-ble
-mkdir -p build
 west build -b xiao_ble app
 ```
 
